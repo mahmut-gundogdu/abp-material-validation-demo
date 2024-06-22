@@ -29,3 +29,17 @@
   }
 
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+mat-error {
+  display: none !important;
+}
+.mat-mdc-form-field-error-wrapper .invalid-feedback{
+  display:inline;
+}
+
+
+
