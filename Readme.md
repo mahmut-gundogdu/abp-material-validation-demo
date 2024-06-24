@@ -1,28 +1,31 @@
 # How to use Angular Material with Validation On ABP
 
-ABP framework  (angular) has its own validation mechanism. By default It may problem with Angular material. In this example, I want to show how to use ABP clientside validation with Material (ngx-validate)
+The ABP framework (Angular) has its own validation mechanism. default settings  may cause issues with Angular Material. In this example, I want to show how to use ABP client-side validation with Angular Material (ngx-validate).
 
 ### Creating project
 
 I use that settings. 
 `abp new BookStoreMaterial -t app-nolayers -u angular -dbms SQLite --theme basic -csf`
 
-BE and Theme option is a little bit off topic due that I choosed most simples one.
+The Backend and Theme option is a little bit off-topic since I chose the simplest one.
 
 
 ### Add angular material in project.
 
-To add Angular Material to your project, you can use the `ng add` command. Open your terminal and navigate to the root directory of your project. Then, run the following command:
+To add Angular Material to your project, you can use the ng add command. Open your terminal and navigate to the root directory of your project. Then, run the following command:
+
+
 
 ```
 ng add @angular/material
 ```
 
-This command will install Angular Material and its dependencies, as well as configure your project to use Angular Material.
+Using this command, you can set up your project to use Angular Material and install all of its dependencies:
+
 
 
 ### Form Validation
-we have simple form with validation rule
+We have simple form with validation rules
 
 ```js
 this.form = this.formBuilder.group({
@@ -32,12 +35,12 @@ this.form = this.formBuilder.group({
 });
 ```
 
-When the user click the submit button errors shown. Yes it works but expected visual behavior is not fit.
+The user sees errors when they clicked the submit button. It functions, but the expected visual behavior is out of place.
  
  ![Image](img/1.png)
 
 
-mat-form-field get access to error component and placed in the dom. You can check that How it works Angular material form error. 
+`mat-form-field` get access to error component and placed in the dom. See the Angular Material Form Error page to see how it works. 
  https://material.angular.io/components/form-field/overview#error-messages
 
 ```html
@@ -50,14 +53,15 @@ mat-form-field get access to error component and placed in the dom. You can chec
     </mat-form-field>
 ```
  ![Step2](img/2.png)
-Yes it better but we have two error message.  1 added by NgxValidate , 2 added by developer.
+It's better, yes, but there are two error messages.  NgxValidate created one, and the developer added two.
 
-We be able to disable NgxValidation by a attribute that name is `skipValidation`
+We can disable NgxValidation using an directive named `skipValidation`.
 
 ![Step3](img/3.png)
-but We have to add localization message one by one. it is so repetative. 
 
-We can created error messages by NgxValidate with ValidationContainer attribute and `validationTarget` attribute. `validateContainer` directive is a pointer. it define/mark a parent for error message. `validationTarget` is a mark the place that added error message.
+However, we must add each localization message individually. It is quite repetitive. 
+
+Using the `validationTarget` and `ValidationContainer` attributes in NgxValidate, we can build error messages. The directive `validateContainer` is a pointer. For error messages, it defines or marks a parent. The location of the added error message is marked with `validationTarget`.
 
 ```html
     <mat-form-field class="col" validationContainer>
@@ -67,7 +71,7 @@ We can created error messages by NgxValidate with ValidationContainer attribute 
     </mat-form-field>
 ```
 
-but still I have a visual problem. Because ngx-validate added validation message as sibling. 
+yet my visual issue continues. due to the validation message being inserted by ngx-validate as a sibling. 
 
 ![Step4](img/4.png)
 
